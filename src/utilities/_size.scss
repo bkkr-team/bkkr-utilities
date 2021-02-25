@@ -1,0 +1,28 @@
+@use "../globals";
+
+// stylelint-disable declaration-no-important
+
+// Size variables
+// --------------------------------------------------
+
+$sizes: (
+  (
+    25:     25%,
+    50:     50%,
+    75:     75%,
+    100:    100%,
+    auto:   auto
+  )
+) !default;
+
+
+// Width and height classes
+// --------------------------------------------------
+
+@each $prop, $abbrev in (width: w, height: h, min-width: minw, min-height: minh) {
+  @each $size, $length in $sizes {
+    .#{$abbrev}-#{$size} {
+      #{$prop}: $length !important;
+    }
+  }
+}

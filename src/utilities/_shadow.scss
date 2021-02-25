@@ -1,0 +1,56 @@
+@use "sass:map";
+@use "../globals";
+
+// stylelint-disable declaration-no-important
+
+// Shadow variables
+// --------------------------------------------------
+
+$shadow-color-value:          0, 0, 0 !default;
+$shadow-color:                var(--box-shadow-color-rgb, #{$shadow-color-value}) !default;
+
+$shadow-x:                    0 !default;
+$shadow-y:                    6px !default;
+$shadow-radius:               10px !default;
+$shadow-spread:               0 !default;
+
+$shadows: (
+  (
+    0:  none,
+    1:  #{
+          $shadow-x*.5 $shadow-y*.25 $shadow-radius*.25 $shadow-spread * -0.5 rgba(#{$shadow-color}, .1),
+          $shadow-x*.5 $shadow-y $shadow-radius*0.5 $shadow-spread rgba(#{$shadow-color}, .12),
+          $shadow-x*.5 $shadow-y*.1 $shadow-radius $shadow-spread rgba(#{$shadow-color}, .08)
+        },
+    2:  #{
+          $shadow-x $shadow-y*.5 $shadow-radius*.5 $shadow-spread * -1 rgba(#{$shadow-color}, .1),
+          $shadow-x $shadow-y $shadow-radius $shadow-spread rgba(#{$shadow-color}, .12),
+          $shadow-x $shadow-y*.2 $shadow-radius*2 $shadow-spread rgba(#{$shadow-color}, .08)
+        },
+    3:  #{
+          $shadow-x*2 $shadow-y*2.5 $shadow-radius*2.5 $shadow-spread * -2 rgba(#{$shadow-color}, .1),
+          $shadow-x*2 $shadow-y $shadow-radius*2 $shadow-spread rgba(#{$shadow-color}, .12),
+          $shadow-x*2 $shadow-y*2.2 $shadow-radius*4 $shadow-spread rgba(#{$shadow-color}, .08)
+        },
+  )
+) !default;
+
+$shadow-value:                map.get($shadows, 2) !default;
+$shadow:                      var(--bkkr-box-shadow, #{$shadow-value}) !default;
+
+
+// Shadow classes
+// --------------------------------------------------
+
+.shadow-sm {
+  box-shadow: map.get($shadows, 1) !important;
+}
+.shadow {
+  box-shadow: map.get($shadows, 2) !important;
+}
+.shadow-lg {
+  box-shadow: map.get($shadows, 3) !important;
+}
+.shadow-none {
+  box-shadow: map.get($shadows, 0) !important;
+}

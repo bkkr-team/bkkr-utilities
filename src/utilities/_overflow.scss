@@ -1,0 +1,32 @@
+@use "sass:map";
+@use "../mixins/breakpoint";
+@use "../globals";
+
+// stylelint-disable declaration-no-important
+
+// Overflow variables
+// --------------------------------------------------
+
+$values: hidden, scroll, auto !default;
+
+
+// Overflow classes
+// --------------------------------------------------
+
+@each $breakpoint in map.keys(globals.$breakpoint-list) {
+  @include breakpoint.media-breakpoint-up($breakpoint) {
+    $infix: breakpoint.breakpoint-infix($breakpoint, globals.$breakpoint-list);
+
+    @each $value in $values {
+      .overflow#{$infix}-#{$value} {
+        overflow: $value !important;
+      }
+      .overflow#{$infix}-x-#{$value} {
+        overflow-x: $value !important;
+      }
+      .overflow#{$infix}-y-#{$value} {
+        overflow-y: $value !important;
+      }
+    }
+  }
+}

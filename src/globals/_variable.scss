@@ -1,0 +1,23 @@
+// Globals
+// --------------------------------------------------
+
+// Default foreground and background colors
+
+$background-color-value:        #fff !default;
+$background-color-rgb-value:    255, 255, 255 !default;
+$text-color-value:              #000 !default;
+$text-color-rgb-value:          0, 0, 0 !default;
+
+$background-color:              var(--bkkr-background-color, #{$background-color-value}) !default;
+$background-color-rgb:          var(--bkkr-background-color-rgb, #{$background-color-rgb-value}) !default;
+$text-color:                    var(--bkkr-text-color, #{$text-color-value}) !default;
+$text-color-rgb:                var(--bkkr-text-color-rgb, #{$text-color-rgb-value}) !default;
+
+
+// Z-Indexes
+
+$z-indexes: (
+  (
+    fixed:            999
+  )
+) !default;

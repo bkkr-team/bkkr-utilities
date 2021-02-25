@@ -1,0 +1,46 @@
+{
+  "name": "@bkkr/utilites",
+  "version": "1.0.0",
+  "description": "Common used CSS utilities",
+  "author": "Imre Bekker",
+  "contributors": [
+    "Ingenia IT",
+    "bkkr-team"
+  ],
+  "homepage": "https://github.com/bkkr-team/bkkr-framework/packages/utilities#readme",
+  "license": "MIT",
+  "style": "dist/bkkr.utilities.css",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "test": "npm run lint",
+    "build": "npm-run-all compile prefix minify",
+    "compile": "sass --style expanded --source-map --embed-sources --no-error-css src/:dist/",
+    "lint": "stylelint --fix --syntax scss \"**/*.{css,scss}\" --cache --cache-location .cache/.stylelintcache",
+    "minify": "cleancss -O1 --format breakWith=lf --source-map --source-map-inline-sources --output dist/bkkr.utilities.min.css dist/bkkr.utilities.css",
+    "prefix": "postcss --config postcss.config.js --replace \"dist/*.css\" \"!dist/*.min.css\""
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.8.6",
+    "clean-css-cli": "^4.3.0",
+    "npm-run-all": "^4.0.5",
+    "postcss": "^8.2.4",
+    "postcss-cli": "^8.3.1",
+    "sass": "^1.32.5",
+    "stylelint": "^13.9.0",
+    "stylelint-order": "^4.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bkkr-team/bkkr-framework.git",
+    "directory": "packages/utilities"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "name": "@bkkr/core"
+  },
+  "bugs": {
+    "url": "https://github.com/bkkr-team/bkkr-framework/issues"
+  }
+}

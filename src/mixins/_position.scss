@@ -1,0 +1,37 @@
+// Position
+
+@mixin center($position) {
+  @if $position == "y" {
+    top: 50%;
+
+    transform: translateY(-50%);
+  }
+
+  @else if $position == "x" {
+    left: 50%;
+
+    transform: translate(-50%);
+  }
+
+  @else {
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+  }
+  position: absolute;
+}
+
+
+// Add position for all directions
+// @param {string} $top
+// @param {string} $end
+// @param {string} $bottom
+// @param {string} $start
+
+@mixin set($top: null, $end: null, $bottom: null, $start: null) {
+  top: $top;
+  right: $end;
+  bottom: $bottom;
+  left: $start;
+}

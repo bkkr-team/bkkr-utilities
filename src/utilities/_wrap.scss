@@ -1,0 +1,50 @@
+@use "../mixins/breakpoint";
+@use "../mixins/margin";
+@use "../globals";
+
+
+// Wrapper variables
+// --------------------------------------------------
+
+$max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px,
+) !default;
+
+
+// Wrapper classes
+// --------------------------------------------------
+
+.wrap {
+  @include margin.set(var(--padding-top), auto, var(--padding-bottom), auto);
+}
+
+@each $breakpoint, $max-width in $max-widths {
+  @include breakpoint.media-breakpoint-up($breakpoint, globals.$breakpoint-list) {
+    // Extend each breakpoint which is smaller or equal to the current breakpoint
+    $extend-breakpoint: true;
+
+    @each $name, $width in globals.$breakpoint-list {
+      @if ($extend-breakpoint) {
+        // Once the current breakpoint is reached, stop extending
+        @if ($breakpoint == $name) {
+          $extend-breakpoint: false;
+        }
+
+        .wrap#{breakpoint.breakpoint-infix($name, globals.$breakpoint-list)} {
+          @extend %responsive-container-#{$breakpoint};
+        }
+      }
+    }
+    %responsive-container-#{$breakpoint} {
+      max-width: $max-width;
+    }
+  }
+
+  .wrap-#{$breakpoint} {
+    @extend .wrap;
+  }
+}

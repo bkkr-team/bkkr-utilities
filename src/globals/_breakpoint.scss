@@ -1,0 +1,18 @@
+@use "../functions";
+
+// Breakpoints
+//
+// The minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries
+
+$list: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+
+@include functions.array-assert-ascending($list, "$list");
+@include functions.array-assert-starts-at-zero($list);

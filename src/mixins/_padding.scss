@@ -1,0 +1,13 @@
+@use "./property";
+
+// Add padding horizontal
+
+@mixin set-horizontal($start, $end: $start) {
+  @include property.set-horizontal(padding, $start, $end);
+}
+
+// Add padding for all directions
+
+@mixin set($top, $end: $top, $bottom: $top, $start: $end) {
+  @include property.set(padding, $top, $end, $bottom, $start);
+}

@@ -1,0 +1,13 @@
+@use "./property";
+
+// Add margin horizontal
+
+@mixin set-horizontal($start, $end: $start) {
+  @include property.set-horizontal(margin, $start, $end);
+}
+
+// Add margin for all directions
+
+@mixin set($top, $end: $top, $bottom: $top, $start: $end) {
+  @include property.set(margin, $top, $end, $bottom, $start);
+}

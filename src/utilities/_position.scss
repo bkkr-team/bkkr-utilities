@@ -1,0 +1,47 @@
+@use "sass:map";
+@use "../globals";
+@use "../mixins/position";
+
+// stylelint-disable declaration-no-important
+
+// Position variables
+// --------------------------------------------------
+
+$values: static, relative, absolute, fixed, sticky !default;
+
+
+// Position classes
+// --------------------------------------------------
+
+@each $value in $values {
+  .position-#{$value} {
+    position: $value !important;
+  }
+}
+
+// Shorthand
+
+.fixed-top {
+  @include position.set(0, 0, null, 0);
+
+  position: fixed;
+
+  z-index: map.get(globals.$z-indexes, fixed);
+}
+
+.fixed-bottom {
+  @include position.set(null, 0, 0, 0);
+
+  position: fixed;
+
+  z-index: map.get(globals.$z-indexes, fixed);
+}
+
+.sticky-top {
+  @supports (position: sticky) {
+    position: sticky;
+    top: 0;
+
+    z-index: map.get(globals.$z-indexes, fixed);
+  }
+}

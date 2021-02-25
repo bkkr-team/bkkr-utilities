@@ -1,0 +1,117 @@
+@use "sass:map";
+@use "../mixins/breakpoint";
+@use "../mixins/text";
+@use "../globals";
+
+// stylelint-disable declaration-no-important
+
+// Text variables
+// --------------------------------------------------
+
+$alignments: left, center, right, justify !default;
+
+$font-weight-lighter: 100 !default;
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-semibold: 500 !default;
+$font-weight-bold: 700 !default;
+$font-weight-bolder: 900 !default;
+
+$small-font-size: .875em !default;
+
+
+// Text classes
+// --------------------------------------------------
+
+// Text
+
+.text-monospace {
+  font-family: var(--bkkr-font-monospace);
+}
+
+// Alignment
+
+@each $breakpoint in map.keys(globals.$breakpoint-list) {
+  @include breakpoint.media-breakpoint-up($breakpoint) {
+    $infix: breakpoint.breakpoint-infix($breakpoint, globals.$breakpoint-list);
+
+    @each $value in $alignments {
+      .text#{$infix}-#{$value} {
+        text-align: $value !important;
+      }
+    }
+  }
+}
+
+// Truncate
+
+.text-truncate {
+  @include text.truncate();
+}
+.text-wrap {
+  white-space: normal !important;
+}
+.text-nowrap {
+  white-space: nowrap !important;
+}
+
+// Transformation
+
+.text-lowercase {
+  text-transform: lowercase !important;
+}
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+.text-capitalize {
+  text-transform: capitalize !important;
+}
+
+// Weight and italics
+
+.text-weight-light {
+  font-weight: $font-weight-light !important;
+}
+.text-weight-normal {
+  font-weight: $font-weight-normal !important;
+}
+.text-weight-bold,
+.text-b,
+.text-bold,
+.text-strong {
+  font-weight: $font-weight-bolder !important;
+}
+
+.text-italic,
+.text-i,
+.text-cite,
+.text-em,
+.text-var,
+.text-dfn {
+  font-style: italic !important;
+}
+
+.text-s,
+.text-strike,
+.text-del {
+  text-decoration: line-through !important;
+}
+
+.text-u,
+.text-underline,
+.text-ins {
+  text-decoration: underline !important;
+}
+
+// Sizes
+
+.text-small {
+  @include text.font-size($small-font-size);
+}
+
+.text-body {
+  color: globals.$text-color !important;
+}
+.text-muted {
+  color: rgba(#{globals.$text-color-rgb}, .5) !important;
+}

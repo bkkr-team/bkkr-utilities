@@ -1,0 +1,76 @@
+// Add Root Selector
+// --------------------------------------------------------------------------------
+// Adds a root selector using host-context based on the selector passed
+//
+// Examples
+// --------------------------------------------------------------------------------
+// @include add-root-selector("[dir=rtl]", ":host")
+// --> :host-context([dir=rtl])
+//
+// @include add-root-selector("[dir=rtl]", ":host(.fixed)")
+// --> :host-context([dir=rtl]):host(.fixed)
+// --> :host-context([dir=rtl]).fixed
+//
+// @include add-root-selector("[dir=rtl]", ":host(.tab-layout-icon-hide) ::slotted(ion-badge)")
+// --> :host-context([dir=rtl]).tab-layout-icon-hide ::slotted(ion-badge)
+//
+// @include add-root-selector("[dir=rtl]", ".shadow")
+// --> [dir=rtl] .shadow
+// --> :host-context([dir=rtl]) .shadow
+// --------------------------------------------------------------------------------
+
+@function add-root-selector($root, $addHostSelector) {
+  $selectors: split($root, ",");
+
+  $list: ();
+
+  @each $selector in $selectors {
+    // If the selector contains :host( it means it is targeting a class on the host
+    // element so we need to change how we target it
+    @if contains($selector, ":host(") {
+      $shadow-element: replace($selector, ":host(", ":host-context(#{$addHostSelector}):host(");
+      $list: append($list, $shadow-element, comma);
+
+      $new-element: ();
+      $elements: split($selector, " ");
+
+      @each $element in $elements {
+        @if contains($element, ":host(") {
+          $scoped-element: $element;
+
+          @if contains($element, "))") {
+            $scoped-element: replace($scoped-element, "))", ")");
+          }
+
+ @else {
+            $scoped-element: replace($scoped-element, ")", "");
+          }
+          $scoped-element: replace($scoped-element, ":host(", ":host-context(#{$addHostSelector})");
+
+          $new-element: append($new-element, $scoped-element, space);
+        }
+
+ @else {
+          $new-element: append($new-element, $element, space);
+        }
+      }
+
+      $list: append($list, $new-element, comma);
+      // If the selector contains :host it means it is targeting just the host
+      // element so we can change it to look for host-context
+    }
+
+ @else if contains($selector, ":host") {
+      $list: append($list, ":host-context(#{$addHostSelector})", comma);
+      // If the selector does not contain host at all it is either a shadow
+      // or normal element so append both the dir check and host-context
+    }
+
+ @else {
+      $list: append($list, "#{$addHostSelector} #{$selector}", comma);
+      $list: append($list, ":host-context(#{$addHostSelector}) #{$selector}", comma);
+    }
+  }
+
+  @return $list;
+}

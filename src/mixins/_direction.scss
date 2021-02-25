@@ -1,0 +1,46 @@
+@use "../functions/string";
+
+// Text Direction - ltr / rtl
+//
+// CSS defaults to use the ltr css, and adds [dir=rtl] selectors
+// to override ltr defaults.
+// ----------------------------------------------------------
+
+@mixin multi() {
+  @content;
+}
+
+@mixin rtl() {
+  $root: #{&};
+
+  @at-root #{string.add-root-selector($root, "[dir=rtl]")} {
+    @content;
+  }
+}
+
+@mixin ltr() {
+  @content;
+}
+
+
+// Add direction for all directions
+// @param {string} $dir - Direction on LTR
+@mixin set($dir) {
+  $other-dir: null;
+
+  @if $dir == ltr {
+    $other-dir: rtl;
+  } 
+  
+  @else {
+    $other-dir: ltr;
+  }
+
+  @include ltr() {
+    direction: $dir;
+  }
+
+  @include rtl() {
+    direction: $other-dir;
+  }
+}

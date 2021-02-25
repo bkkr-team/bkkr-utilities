@@ -1,0 +1,16 @@
+// stylelint-disable declaration-no-important
+
+// Align variables
+// --------------------------------------------------
+
+$values: baseline, top, middle, bottom, text-bottom, text-top !default;
+
+
+// Align classes
+// --------------------------------------------------
+
+@each $value in $values {
+  .align-#{$value} {
+    vertical-align: $value !important;
+  }
+}

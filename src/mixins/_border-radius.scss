@@ -1,0 +1,18 @@
+
+// Border radius
+
+@mixin set($radius: globals.$radius, $dir: null, $fallback-border-radius: false) {
+  @if $dir == "left" or $dir == "right" {
+    border-top-#{$dir}-radius: $radius;
+    border-bottom-#{$dir}-radius: $radius;
+  }
+
+  @else if $dir == "top" or $dir == "bottom" {
+    border-#{$dir}-left-radius: $radius;
+    border-#{$dir}-right-radius: $radius;
+  }
+
+  @else {
+    border-radius: $radius;
+  }
+}

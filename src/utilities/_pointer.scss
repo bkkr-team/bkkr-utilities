@@ -1,0 +1,22 @@
+// stylelint-disable declaration-no-important
+
+// Pointer variables
+// --------------------------------------------------
+
+$values: pointer, progress, grab !default;
+
+
+// Pointer classes
+// --------------------------------------------------
+
+.cursor-none {
+  pointer-events: none;
+
+  cursor: initial;
+}
+
+@each $value in $values {
+  .cursor-#{$value} {
+    cursor: $value !important;
+  }
+}

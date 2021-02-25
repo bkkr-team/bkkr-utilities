@@ -1,0 +1,40 @@
+// Add property horizontal
+
+@mixin set-horizontal($prop, $start, $end: $start) {
+  @if $start == 0 and $end == 0 {
+    #{$prop}-left: $start;
+    #{$prop}-right: $end;
+  }
+
+ @else {
+    #{$prop}-left: $start;
+    #{$prop}-right: $end;
+
+    @at-root {
+      @supports ((margin-inline-start: 0) or (-webkit-margin-start: 0)) {
+        & {
+          @if $start != null {
+            #{$prop}-left: unset;
+          }
+
+          @if $end != null {
+            #{$prop}-right: unset;
+          }
+
+          -webkit-#{$prop}-start: $start;
+          #{$prop}-inline-start: $start;
+          -webkit-#{$prop}-end: $end;
+          #{$prop}-inline-end: $end;
+        }
+      }
+    }
+  }
+}
+
+// Add property for all directions
+
+@mixin set($prop, $top, $end: $top, $bottom: $top, $start: $end) {
+  @include set-horizontal($prop, $start, $end);
+  #{$prop}-top: $top;
+  #{$prop}-bottom: $bottom;
+}

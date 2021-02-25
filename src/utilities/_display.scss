@@ -1,0 +1,26 @@
+@use "sass:map";
+@use "../mixins/breakpoint";
+@use "../globals";
+
+// stylelint-disable declaration-no-important
+
+// Display variables
+// --------------------------------------------------
+
+$values: none, inline, inline-block, block, flex, inline-flex !default;
+
+
+// Display classes
+// --------------------------------------------------
+
+@each $breakpoint in map.keys(globals.$breakpoint-list) {
+  @include breakpoint.media-breakpoint-up($breakpoint) {
+    $infix: breakpoint.breakpoint-infix($breakpoint, globals.$breakpoint-list);
+
+    @each $value in $values {
+      .d#{$infix}-#{$value} {
+        display: #{$value} !important;
+      }
+    }
+  }
+}

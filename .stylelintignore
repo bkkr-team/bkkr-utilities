@@ -1,0 +1,11 @@
+  
+**/*.min.css
+**/*.html
+**/dist/
+**/vendor/
+**/docs/
+**/www/
+/_gh_pages/
+
+/src/mixins
+/src/functions

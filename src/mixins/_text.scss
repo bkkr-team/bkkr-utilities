@@ -1,0 +1,83 @@
+@use "sass:string";
+@use "../globals";
+
+
+// Inherit
+
+@mixin inherit() {
+  color: inherit;
+
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+
+  letter-spacing: inherit;
+
+  text-align: inherit;
+  text-decoration: inherit;
+  text-indent: inherit;
+  text-overflow: inherit;
+  text-transform: inherit;
+
+  white-space: inherit;
+}
+
+
+// Font settings
+
+@mixin font-face($font-name, $file-name, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: string.quote($font-name);
+    font-style: $style;
+    font-weight: $weight;
+    src: url($file-name + ".eot") format("embedded-opentype"), url($file-name + ".woff") format("woff"), url($file-name + ".ttf") format("truetype"), url($file-name + ".svg##{$font-name}") format("svg");
+  }
+}
+
+@mixin font-family-base() {
+  font-family: globals.$font-family-base;
+}
+
+@mixin font-shorthand($size: globals.$font-size-base, $weight: globals.$font-weight-base, $lineHeight: globals.$line-height-base) {
+  font-size: $size;
+  font-weight: $weight;
+
+  line-height: $lineHeight;
+}
+
+@mixin font-base($size: globals.$font-size-base, $weight: globals.$font-weight-base, $lineHeight: globals.$line-height-base, $fontFamily: globals.$font-family-base) {
+  @include font-shorthand($size, $weight, $lineHeight);
+  font-family: $fontFamily;
+}
+
+@mixin font-size($size: globals.$font-size-base) {
+  font-size: $size;
+}
+
+
+// Font smoothing
+
+@mixin font-smoothing() {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+// Hypens
+
+@mixin hyphens($mode: auto) {
+  hyphens: $mode;
+  word-wrap: break-word;
+}
+
+
+// Truncate
+
+@mixin truncate() {
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+}

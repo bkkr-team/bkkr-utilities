@@ -1,0 +1,59 @@
+@use "../globals";
+@use "../mixins/border-radius";
+
+// stylelint-disable declaration-no-important
+
+// Border variables
+// --------------------------------------------------
+
+$directions: top, right, bottom, left !default;
+$border-width: .55px !default;
+
+$radius-value: 1em !default;
+$radius: var(--bkkr-border-radius, #{$radius-value}) !default;
+
+
+// Border classes
+// --------------------------------------------------
+
+.border {
+  border: $border-width solid rgba(globals.$text-color-rgb, 0.4) !important;
+}
+
+@each $dir in $directions {
+  .border-#{$dir} {
+    border-#{$dir}: $border-width solid rgba(globals.$text-color-rgb, 0.4) !important;
+  }
+}
+
+// No border
+
+.border-0 {
+  border: 0 !important;
+}
+
+@each $dir in $directions {
+  .border-#{$dir}-0 {
+    border-#{$dir}: 0 !important;
+  }
+}
+
+// Rounding
+
+.rounded {
+  @include border-radius.set($radius !important);
+}
+
+.rounded-circle {
+  @include border-radius.set(50% !important);
+}
+
+.rounded-0 {
+  @include border-radius.set(0 !important);
+}
+
+@each $dir in $directions {
+  .rounded-#{$dir} {
+    @include border-radius.set($radius !important, $dir);
+  }
+}

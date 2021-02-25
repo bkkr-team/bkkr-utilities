@@ -1,0 +1,12 @@
+@use "../mixins/screen-reader";
+
+// Screenreader classes
+// --------------------------------------------------
+
+.sr-only {
+  @include screen-reader.only();
+}
+
+.sr-only-focusable {
+  @include screen-reader.only-focusable();
+}

@@ -1,5 +1,5 @@
 {
-  "name": "@bkkr/utilites",
+  "name": "@bkkr/utilities",
   "version": "1.0.0",
   "description": "Common used CSS utilities",
   "author": "Imre Bekker",
@@ -38,7 +38,7 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
-    "name": "@bkkr/core"
+    "name": "@bkkr/utilities"
   },
   "bugs": {
     "url": "https://github.com/bkkr-team/bkkr-framework/issues"

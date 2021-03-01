@@ -79,6 +79,11 @@ $small-font-size: .875em !default;
 .text-b,
 .text-bold,
 .text-strong {
+  font-weight: $font-weight-bold !important;
+}
+
+.text-weight-bolder,
+.text-bolder {
   font-weight: $font-weight-bolder !important;
 }
 

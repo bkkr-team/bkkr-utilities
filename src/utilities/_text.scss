@@ -119,4 +119,6 @@ $small-font-size: .875em !default;
 }
 .text-muted {
   color: rgba(#{globals.$text-color-rgb}, .5) !important;
+  
+  text-decoration: none !important;
 }

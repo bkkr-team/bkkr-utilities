@@ -18,8 +18,8 @@
     "build": "npm-run-all compile prefix minify",
     "compile": "sass --style expanded --source-map --embed-sources --no-error-css src/:dist/",
     "lint": "stylelint --fix --syntax scss \"**/*.{css,scss}\" --cache --cache-location .cache/.stylelintcache",
-    "minify": "cleancss -O1 --format breakWith=lf --source-map --source-map-inline-sources --output dist/bkkr.utilities.min.css dist/bkkr.utilities.css",
-    "prefix": "postcss --config postcss.config.js --replace \"dist/*.css\" \"!dist/*.min.css\""
+    "prefix": "postcss --config postcss.config.js --replace \"dist/*.css\"",
+    "minify": "cleancss -O1 --format breakWith=lf --source-map --output dist/bkkr.utilities.min.css dist/bkkr.utilities.css"
   },
   "devDependencies": {
     "autoprefixer": "^9.8.6",

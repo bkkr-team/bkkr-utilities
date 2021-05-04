@@ -8,7 +8,7 @@
 // Text variables
 // --------------------------------------------------
 
-$alignments: left, center, right, justify !default;
+$alignments: start, left, center, end, right, justify !default;
 
 $font-weight-lighter: 100 !default;
 $font-weight-light: 300 !default;
@@ -17,8 +17,7 @@ $font-weight-semibold: 500 !default;
 $font-weight-bold: 700 !default;
 $font-weight-bolder: 900 !default;
 
-$small-font-size: .875em !default;
-
+$small-font-size: 0.875em !default;
 
 // Text classes
 // --------------------------------------------------
@@ -118,7 +117,7 @@ $small-font-size: .875em !default;
   color: globals.$text-color !important;
 }
 .text-muted {
-  color: rgba(#{globals.$text-color-rgb}, .5) !important;
-  
+  color: rgba(#{globals.$text-color-rgb}, 0.5) !important;
+
   text-decoration: none !important;
 }

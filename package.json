@@ -14,6 +14,7 @@
     "dist/"
   ],
   "scripts": {
+    "prepare": "npm run build",
     "test": "npm run lint",
     "build": "npm-run-all compile prefix minify",
     "compile": "sass --style expanded --source-map --embed-sources --no-error-css src/:dist/",

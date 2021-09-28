@@ -1,6 +1,6 @@
 {
   "name": "@bkkr/utilities",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Common used CSS utilities",
   "author": "Imre Bekker",
   "contributors": [
@@ -17,19 +17,21 @@
     "prepare": "npm run build",
     "test": "npm run lint",
     "build": "npm-run-all compile prefix minify",
-    "compile": "sass --style expanded --source-map --embed-sources --no-error-css src/:dist/",
+    "compile": "sass --style expanded --no-source-map --no-error-css src/:dist/",
     "lint": "stylelint --fix --syntax scss \"**/*.{css,scss}\" --cache --cache-location .cache/.stylelintcache",
     "prefix": "postcss --config postcss.config.js --replace \"dist/*.css\"",
-    "minify": "cleancss -O1 --format breakWith=lf --source-map --output dist/bkkr.utilities.min.css dist/bkkr.utilities.css"
+    "minify": "cleancss -O1 --format breakWith=lf --output dist/bkkr.utilities.min.css dist/bkkr.utilities.css",
+    "update:deps": "npm-check-updates -u"
   },
   "devDependencies": {
-    "autoprefixer": "^9.8.6",
-    "clean-css-cli": "^4.3.0",
-    "npm-run-all": "^4.0.5",
-    "postcss": "^8.2.4",
-    "postcss-cli": "^8.3.1",
-    "sass": "^1.32.5",
-    "stylelint": "^13.9.0",
+    "autoprefixer": "^10.3.6",
+    "clean-css-cli": "^5.3.3",
+    "npm-check-updates": "^11.8.5",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.3.8",
+    "postcss-cli": "^9.0.1",
+    "sass": "^1.42.1",
+    "stylelint": "^13.13.1",
     "stylelint-order": "^4.1.0"
   },
   "repository": {

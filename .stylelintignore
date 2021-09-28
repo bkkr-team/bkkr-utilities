@@ -7,5 +7,5 @@
 **/www/
 /_gh_pages/
 
-/src/mixins
-/src/functions
+**/src/mixins
+**/src/functions
